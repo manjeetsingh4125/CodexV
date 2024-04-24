@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/favic.png" type="image/x-icon">
+    <title>IDE | CodexV</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="codemirror/codemirror-5.65.16/lib/codemirror.css">
+    <script src="codemirror/codemirror-5.65.16/mode/python/python.js"></script>
+    <script src="codemirror/codemirror-5.65.16/lib/codemirror.js"></script>
+    <script src="codemirror-5.65.9/lib/codemirror.js"></script>
+    <script src="codemirror/codemirror-5.65.16/mode/clike/clike.js"></script>
+    <link rel="stylesheet" href="codemirror/codemirror-5.65.16/theme/material-ocean.css">
+    <link rel="stylesheet" href="codemirror/codemirror-5.65.16/theme/dracula.css">
+    <script src="codemirror/codemirror-5.65.16/addon/edit/closebrackets.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <style>
+        body{
+            background-color: white;
+        }
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 80px;
+            background: #E3E6F3;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            z-index: 999;
+            position: sticky;
+            top: 0;
+            left: 0;
+            justify-content: end;
+        }
+        
+        #navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #navbar li {
+            list-style: none;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        #navbar li a{
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: black;
+            transition: 0.3s ease;
+        }
+        
+        #navbar li a:hover {
+            color: #7851a9;
+        }
+        
+        #navbar li a.active::after,
+        #navbar li a:hover::after {
+            content: "";
+            width: 30%;
+            height: 2px;
+            background: #7851a9;
+            position: absolute;
+            bottom: -4px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <section id="header">
+        <!-- <a href="index.html"><img src="images/logotrans.png" class="logo" id="logo-header" alt="Logo"></a> -->
+        <div>
+            <ul id="navbar">
+            <li><a href="http://127.0.0.1:5501/index.html">Home</a></li>
+            <li><a class="active" href="http://localhost:8000" target="_blank">IDE</a></li>
+            <li><a href="http://127.0.0.1:5501/courses.html">Courses</a></li>
+            <li><a href="http://127.0.0.1:5501/snippets.html">Snippets</a></li>
+            <li><a href="http://127.0.0.1:5501/about.html">About Us</a></li>
+        </ul>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    
+    <div class="row m-3">
+        <div class="col">
+            <div class="d-flex justify-content-between mb-2 bg-dark rounded p-2">
+                <div class="col-12 w-25">
+                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                    <select class="form-select" id="inlineFormSelectPref">
+                        <option selected>Choose...</option>
+                        <option value="Java">Java</option>
+                        <option value="Cpp">Cpp</option>
+                        <option value="Python">Python</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" onclick="generateRandomCode()" class="btn btn-success">Generate Random Code</button>
+                    <button type="button" id="clear" onclick="clearTextArea()" value="Clear TextArea" class="btn btn-success">Clear</button>
+                    <button type="button" id="run" class="btn btn-success"><i class="bi bi-play-fill"></i></button>
+                </div>
+            </div>
+            <textarea type="text" id="editor" class="form-control" aria-label="First name"></textarea>
+        </div>
+
+        <div class="col d-flex flex-column rounded bg-dark px-4">
+            <div class="h-50">
+                <label for="Input" class="text-light mt-4 mb-2">Input</label>
+                <textarea type="text" id="input" class="form-control h-75" aria-label="Last name"></textarea>
+            </div>
+
+            <div class="h-50">
+                <label for="Output" class="text-light mb-2">Output</label>
+                <textarea type="text" id="output" class="form-control h-75" aria-label="Last name"></textarea>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+        mode: "text/x-c++src",
+        // theme: "material-ocean",
+        theme: "dracula",
+        lineNumbers: true,
+        autoCloseBrackets: true,
+
+    })
+    var width = window.innerWidth
+    var input = document.getElementById("input")
+    var output = document.getElementById("output")
+
+
+    function generateRandomCode() {
+        const codeSnippets = {
+            cpp: "#include <iostream>\n\nint main() {\n    std::cout << \"Hello, C++!\" << std::endl;\n    return 0;\n}",
+            java: "public class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Java!\");\n    }\n}",
+            python: "print(\"Hello, Python!\")"
+        };
+
+        const languages = ["cpp", "java", "python"];
+        const randomLanguage = languages[Math.floor(Math.random() * languages.length)];
+        const randomCodeSnippet = codeSnippets[randomLanguage];
+
+        // Set the mode dynamically based on the selected language
+        // if (randomLanguage === "java") {
+        //     editor.setOption("mode", "text/x-java");
+        // } else if (randomLanguage === "python") {
+        //     editor.setOption("mode", "text/x-python");
+        // } else {
+        //     editor.setOption("mode", "text/x-c++src");
+        // }
+
+        // Set the random code snippet
+        editor.setValue(randomCodeSnippet);
+    }
+
+
+
+
+    function clearTextArea() {
+    editor.setValue('');
+    }
+    
+    var run = document.getElementById("run")
+    editor.setSize(0.7 * width, "500")
+    var option = document.getElementById("inlineFormSelectPref")
+    option.addEventListener("change", function () {
+        if (option.value == "Java") {
+            editor.setOption("mode", "text/x-java")
+        }
+        else if (option.value == "python") {
+            editor.setOption("mode", "text/x-python")
+        }
+        else {
+            editor.setOption("mode", "text/x-c++src")
+        }
+    })
+    var code;
+    run.addEventListener("click", async function () {
+        code = {
+            code: editor.getValue(),
+            input: input.value,
+            lang: option.value
+        }
+        console.log(code)
+        var oData = await fetch("http://localhost:8000/compile", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(code)
+        })
+        var d = await oData.json()
+        output.value = d.output
+    })
+</script>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/favic.png" type="image/x-icon">
+    <title>Code Snippets | CodexV</title>
+    <style>
+        /* Updated styles for code snippets */
+        code {
+        display: block;
+        background-color: #000;
+        color: #a9b7c6;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        position: relative;
+        font-family: 'Courier New', monospace;
+        overflow-x: auto;
+    }
+
+    pre code {
+        padding: 0;
+        margin: 10px;
+        display: flex;
+        max-width: 40vw;
+        background-color: black;
+    }
+
+    .copy-button {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .copy-button:hover {
+        background-color: #2980b9;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <section id="header">
+        <a href="index.html"><img src="images/logotrans.png" class="logo" alt="Logo"></a>
+        <div>
+            <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="http://localhost:8000" target="_blank">IDE</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a class="active" href="snippets.html">Snippets</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        </div>
+    </section>
+
+    <div class="gpt-container">
+        <a class="gpt" href="https://chat.openai.com/c/be52032f-3d62-40a4-89e0-2a489ffb85dd" target="_blank">
+          <button class="btn-pink btn-project" id="access-btn">
+            Access ChatGPT
+          </button>
+        </a>
+      </div>
+
+    <!-- Code Snippets Section -->
+    <section id="code-snippets" class="section-p1 section-m1">
+        <h2>Code Snippets for Learning</h2>
+
+        <!-- C++ Code Snippets -->
+    <h3>C++</h3>
+    <pre><code>
+    #include &lt;iostream&gt;
+    using namespace std;
+
+    int main() {
+        cout << "Hello, World!" << endl;
+    }
+    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+    </code></pre>
+    <p>Simple C++ program printing "Hello, World!"</p>
+
+    <pre><code>
+    #include &lt;iostream&gt;
+    using namespace std;
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int main() {
+        cout << "Sum: " << add(5, 7) << endl;
+    }
+    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+    </code></pre>
+    <p>Function to add two numbers in C++</p>
+
+    <pre><code>
+        #include &lt;iostream&gt;
+        using namespace std;
+    
+        int main()
+        {
+            int a = 5, b = 10, temp;
+
+            cout << "Before swapping." << endl;
+            cout << "a = " << a << ", b = " << b << endl;
+
+            temp = a;
+            a = b;
+            b = temp;
+
+            cout << "\nAfter swapping." << endl;
+            cout << "a = " << a << ", b = " << b << endl;
+
+            return 0;
+        }
+        <button class="copy-button" onclick="copyCode(this)">Copy</button>
+        </code></pre>
+        <p>Function to Swap two numbers in C++</p>
+
+        <pre><code>
+            #include &lt;iostream&gt;
+            using namespace std;
+        
+            int main() {
+                int n;
+                long factorial = 1.0;
+            
+                cout << "Enter a positive integer: ";
+                cin >> n;
+            
+                if (n < 0)
+                    cout << "Error! Factorial of a negative number doesn't exist.";
+                else {
+                    for(int i = 1; i <= n; ++i) {
+                        factorial *= i;
+                    }
+                    cout << "Factorial of " << n << " = " << factorial;    
+                }
+            
+                return 0;
+            }
+           
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+            </code></pre>
+            <p>Function to find factorial in C++</p>
+
+    <!-- Java Code Snippets -->
+    <h3>Java</h3>
+    <pre><code>
+    public class HelloWorld {}
+            public static void main(String[] args) {
+            System.out.println("Hello, World!");
+        }
+        <button class="copy-button" onclick="copyCode(this)">Copy</button>
+    </code></pre>
+    <p>Simple Java program printing "Hello, World!"</p>
+
+    <pre><code>
+    public class sumOfNumbers1
+    {
+        public static void main(String args[])
+        {
+            int n1=225, n2=115, sum;
+            sum=n1+n2;
+            System.out.println("Sum: " +sum);
+        }
+    }
+
+        <button class="copy-button" onclick="copyCode(this)">Copy</button>
+    </code></pre>
+    <p>Function to add two numbers in Java</p>
+
+    <!-- Python Code Snippets -->
+    <h3>Python</h3>
+    <pre><code>
+    print("Hello, World!")
+    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+    </code></pre>
+    <p>Simple Python program printing "Hello, World!"</p>
+
+    <pre><code>
+    def add(a, b):
+        return a + b
+
+    result = add(5, 7)
+    print("Sum:", result)
+    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+    </code></pre>
+    <p>Function to add two numbers in Python</p>
+
+    <pre><code>
+        # Python Program to calculate the square root
+
+        # Note: change this value for a different result
+        num = 8 
+
+        # To take the input from the user
+        #num = float(input('Enter a number: '))
+
+        num_sqrt = num ** 0.5
+        print('The square root of %0.3f is %0.3f'%(num ,num_sqrt))
+
+        <button class="copy-button" onclick="copyCode(this)">Copy</button>
+        </code></pre>
+        <p>Program to calculate the square root in Python</p>
+
+        <pre><code>
+            # Program to generate a random number between 0 and 9
+
+            # importing the random module
+            import random
+
+            print(random.randint(0,9))
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+            </code></pre>
+            <p>Program to generate a random number in Python</p>
+
+    </section>
+
+    <!-- JavaScript for Copy Functionality -->
+    <script>
+        function copyCode(button) {
+        const codeElement = button.parentElement;
+        const codeText = codeElement.innerText.trim();
+        const textArea = document.createElement('textarea');
+        textArea.value = codeText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Code copied to clipboard!');
+    }
+    </script>
+
+    <!-- Footer -->
+    <footer class="section-p1">
+        <div class="row">
+             <img src="images/logotrans.png" alt=""><br><br>
+             <div class="join-banner">
+                 <h1>Learn with us Join Our Coding Family</h1><br>
+                 <div class="social-icons">
+                 <div>
+                   <a href="Youtube.com" target="_blank"><img src="images/youtube.png" class="fab"></a>
+                 </div>
+                 <div>
+                   <a href="Linkedin.com" target="_blank"><img src="images/linkedin.png" class="fab"></a>
+                 </div>
+                 <div>
+                   <a href="Discord.com" target="_blank"><img src="images/discord.png" class="fab"></a>
+                 </div>
+                 <div>
+                   <a href="Telegram.com" target="_blank"><img src="images/telegram.png" class="fab"></a>
+                 </div>
+                 </div>
+             </div>
+        </div>
+     
+        <div class="col">
+         <h4>Menu</h4>
+         <a href="index.html">Home</a>
+         <a href="ide.html">IDE</a>
+         <a href="about.html">About Us</a>
+         <a href="#">Help</a>
+        </div>
+  
+        <div class="col">
+         <h4>Contact</h4>
+         <p><strong>Address: </strong>9a Phase 3,DLF Cyber City, Gurugram</p>
+         <p><strong>Phone:</strong> (+91) 9540312081 / (+91) 8527762403</p>
+         <p><strong>Hours:</strong> 8:00 - 21:00, Mon-Sun</p>
+        </div>
+   
+        <div class="copyright"><br>
+         <p>© 2023, Group Project - HTML CSS Minor Project</p>
+        </div>
+  </footer>
+
+</body>
+</html>
